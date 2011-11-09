@@ -26,6 +26,7 @@ import junit.framework.TestCase;
 
 import java.io.File;
 import java.io.IOException;
+import org.apache.commons.io.FileUtils;
 
 public class ParsedOptionsTest extends TestCase {
   private File tempDir;
@@ -37,7 +38,7 @@ public class ParsedOptionsTest extends TestCase {
 
   @Override protected void tearDown() throws IOException {
     if (tempDir != null) {
-      Files.deleteRecursively(tempDir);
+      FileUtils.deleteDirectory(tempDir);
     }
   }
 
@@ -64,7 +65,7 @@ public class ParsedOptionsTest extends TestCase {
     } catch (DisplayUsageException expected) {
     }
   }
-  
+
   public void testDefaults() throws InvalidCommandException {
     CaliperOptions options = ParsedOptions.from(new String[] {CLASS_NAME});
 
